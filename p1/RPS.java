@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class RPSLS {
+public class RPS {
 
     enum Move {
         ROCK, PAPER, SCISSORS, LIZARD, SPOCK
@@ -12,32 +12,25 @@ public class RPSLS {
         if (a == b)
             return 0;
 
-        switch (a) {
-            case ROCK:
-                if (b == Move.SCISSORS || b == Move.LIZARD)
-                    return 1;
-                break;
+        if (a == Move.ROCK &&
+            (b == Move.SCISSORS || b == Move.LIZARD))
+            return 1;
 
-            case PAPER:
-                if (b == Move.ROCK || b == Move.SPOCK)
-                    return 1;
-                break;
+        if (a == Move.PAPER &&
+            (b == Move.ROCK || b == Move.SPOCK))
+            return 1;
 
-            case SCISSORS:
-                if (b == Move.PAPER || b == Move.LIZARD)
-                    return 1;
-                break;
+        if (a == Move.SCISSORS &&
+            (b == Move.PAPER || b == Move.LIZARD))
+            return 1;
 
-            case LIZARD:
-                if (b == Move.SPOCK || b == Move.PAPER)
-                    return 1;
-                break;
+        if (a == Move.LIZARD &&
+            (b == Move.SPOCK || b == Move.PAPER))
+            return 1;
 
-            case SPOCK:
-                if (b == Move.ROCK || b == Move.SCISSORS)
-                    return 1;
-                break;
-        }
+        if (a == Move.SPOCK &&
+            (b == Move.ROCK || b == Move.SCISSORS))
+            return 1;
 
         return -1;
     }
@@ -72,13 +65,13 @@ public class RPSLS {
             int result = winner(player, comp);
 
             if (result == 1) {
-                System.out.println("You win this round");
+                System.out.println("You win");
                 you++;
-            }
+            } 
             else if (result == -1) {
-                System.out.println("Computer wins this round");
+                System.out.println("Computer wins");
                 computer++;
-            }
+            } 
             else {
                 System.out.println("Tie");
             }
@@ -86,7 +79,7 @@ public class RPSLS {
             System.out.println();
         }
 
-        System.out.println("Score: You " + you + "-" + computer);
+        System.out.println("Final Score: " + you + "-" + computer);
 
         if (you > computer)
             System.out.println("You win " + you + "-" + computer);
