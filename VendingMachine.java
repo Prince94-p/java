@@ -1,19 +1,25 @@
 import java.util.Scanner;
 
-enum Coin {
-    ONE, TWO, FIVE, TEN
-}
+public class VendingMachine {
 
-public class p11 {
+    enum Coin {
+        ONE, TWO, FIVE, TEN
+    }
+
     public static void main(String[] args) {
-        int snackPrice = 15;
-        int total = 0;
 
         Scanner sc = new Scanner(System.in);
 
-        while (total < snackPrice) {
-            System.out.print("Enter coin (ONE, TWO, FIVE, TEN): ");
-            Coin coin = Coin.valueOf(sc.next().toUpperCase());
+        int price = 15;
+        int total = 0;
+
+        while (total < price) {
+
+            System.out.print("Enter coin: ");
+
+            String input = sc.nextLine().toUpperCase();
+
+            Coin coin = Coin.valueOf(input);
 
             int value = switch (coin) {
                 case ONE -> 1;
@@ -23,10 +29,13 @@ public class p11 {
             };
 
             total += value;
+
             System.out.println("Total so far: " + total);
         }
 
-        System.out.println("Paid. Change: " + (total - snackPrice));
+        int change = total - price;
+
+        System.out.println("Paid. Change: " + change);
 
         sc.close();
     }
